@@ -1,4 +1,5 @@
-PecuniaNunc::Application.routes.draw do  root to: "home#index"
+PecuniaNunc::Application.routes.draw do  
+  root to: "subscribers#home"
   # resources :subscribers
 
 

@@ -1,5 +1,8 @@
 class SubscribersController < ApplicationController
 
+	def home
+	end
+	
 	def new
 		@subscriber = Subscriber.new(params[:subscriber])
 		if @subscriber.save
