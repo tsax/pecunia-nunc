@@ -1,5 +1,7 @@
 PecuniaNunc::Application.routes.draw do
-  resources :subscribers
+  get "home/index"
+  root to: "home#index"
+  # resources :subscribers
 
 
   # The priority is based upon order of creation:
