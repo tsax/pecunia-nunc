@@ -1,5 +1,7 @@
 PecuniaNunc::Application.routes.draw do  
   root to: "subscribers#home"
+  get 'home' => 'subscribers#home', as: 'home' 
+  post '/new' => 'subscribers#new'
   # resources :subscribers
 
 

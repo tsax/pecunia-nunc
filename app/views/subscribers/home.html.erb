@@ -1,1 +1,12 @@
 <h1>Welcome to Pecunia Nunc</h1>
+
+	<%= form_for @subscriber, url: '/new' do |f| %>
+		<%= render 'shared/errors' %>
+	  <%= f.label :name %>:
+	  <%= f.text_field :name %><br />
+
+	  <%= f.label :email %>:
+	  <%= f.text_field :email %><br />
+
+  <%= f.submit %>
+<% end %>
