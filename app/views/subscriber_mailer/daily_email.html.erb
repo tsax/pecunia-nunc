@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Good Morning, <%= @subscriber.name %>!</h1>
+    <h1>
+      Here is a your daily list of Kickstarter projects ending today<br/>
+    </h1>
+    <% @p.each do |project| %>
+      <p><a href="<%=project.url[23..-1]%>"><%="#{project.name}"%></a></p> <p> <%=project.pledge_deadline%></p>
+    <% end %><br/>
+    <h4>Thanks for subscribing and have a fantastic day!</h4>
+  </body>
+</html>
