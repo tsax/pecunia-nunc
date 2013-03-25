@@ -1,5 +1,5 @@
 class Subscriber < ActiveRecord::Base
-  attr_accessible :active, :email, :name, :token
+  attr_accessible :active, :email, :name, :token, :last_email
   
   before_save { |subscriber| subscriber.email = email.downcase }
 
