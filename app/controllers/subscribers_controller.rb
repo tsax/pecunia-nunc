@@ -18,21 +18,22 @@ class SubscribersController < ApplicationController
 		end	
 	end
 
-	def confirm
-		# Subscriber clicks on email link that directs him/her to 
-		# this action. Check params[:token] against token, if it
-		# matches, set active boolean of the record to true,
-		# display a flash notice of 'thanks your email is confirmed'
+	def confirm_or_unsubscribe
 		@subscriber = Subscriber.find_by_token(params[:token])
 		if @subscriber.nil?
 			flash[:notice] = 'Sorry your token did not match
 												our records. Please re-subscribe or try
 												re-clicking the Confirm link in your email'
-		else
+		elsif params[:action] = 'confirm'
 			@subscriber.active = true
+			@subscriber.save
 			flash[:notice] = 'Thank you! Your email address has been
 												confirmed! Expect your daily email to arrive
 												everyday'
-    end
+	  elsif params[:action] = 'unsubscribe'
+	  	@subscriber.active = false
+	  	@subscriber.save
+	  	flash[:notice] = 'Sorry to see you go! You have been unsubscribed'
+	  end
 	end
 end
