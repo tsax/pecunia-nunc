@@ -5,7 +5,7 @@ gem 'rails', '3.2.12'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'kickstarter', :git => 'https://github.com/tsax/kickstarter.git'
+gem 'kickstarter', :git => 'https://github.com/tsax/kickstarter.git', :branch => 'project-category'
 
 group :development do
 	gem 'sqlite3'	
