@@ -1,1 +1,63 @@
 @import "bootstrap";
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab);
+
+/* Logo styles */
+#logo {
+    background-color: #f73b3b;
+    color: white;
+}
+
+/* Heading styles */
+h1 {
+    color: #f73b3b;
+}
+body {
+    background: #ddd url(bg.png);
+    padding-top: 120px;
+}
+
+h1 {
+    color: #f73b3b;
+}
+
+p {
+    font-size: 16px;
+    line-height: 25px;
+    margin-top: 1.5em;
+}
+
+#logo {
+    background-color: rgb(108, 232, 97);
+    /*background-color: #f73b3b;*/
+    border-radius: 25px;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    color: #fff;
+    font-family: 'Roboto Slab', serif;
+    /*font-family: 'Lobster', cursive;*/
+    font-size: 45px;
+    height: 90px;
+    width: 360px;
+    line-height: 90px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+input.input-large {
+    padding: 9px 14px;
+}
+
+div.gradient {
+    background: url(gradient.png) no-repeat top center;
+    min-height: 770px;
+}
+
+div.content {
+    text-align: center;
+    margin-top: 1.5em;
+}
+
+a.sb.gplus,
+.sb a.gplus {
+	background-image: url(gplus.png);
+}

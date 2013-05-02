@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>PecuniaNunc</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+	<title>PecuniaNunc</title>
+	<%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
 </head>
-<body>
-<% flash.each do |key, value| %>
-        <!-- <div class="alert alert-<%= key %>"><%= value %></div> -->
-	<%= content_tag(:div, value, class: "alert alert-#{key}") %>
-<% end %>
-<%= yield %>
 
+<body>
+  <% flash.each do |key, value| %>
+		<!-- <div class="alert alert-<%= key %>"><%= value %></div> -->
+		<%= content_tag(:div, value, class: "alert alert-#{key}") %>
+	<% end %>
+		<div class="container">
+			<%= yield %>
+		</div>
 </body>
+
 </html>

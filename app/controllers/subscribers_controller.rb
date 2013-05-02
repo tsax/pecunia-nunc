@@ -9,7 +9,7 @@ class SubscribersController < ApplicationController
 		@subscriber = Subscriber.new(params[:subscriber])
 		@subscriber.token = Digest::SHA1.hexdigest([Time.now, rand].join)
 		if @subscriber.save
-			flash[:notice] = "Thanks for signing-up. Please confirm your email address through the email that'll be in your inbox shortly!"
+			flash[:success] = "Thanks for signing-up. Please confirm your email address through the email that'll be in your inbox shortly!"
 
 			redirect_to home_path
 		else
@@ -22,12 +22,12 @@ class SubscribersController < ApplicationController
 		@subscriber = Subscriber.find_by_token(params[:token])
 		binding.pry if Rails.env.development?
 		if @subscriber.nil?
-			flash[:notice] = 'Sorry your token did not match our records. Please re-subscribe or try re-clicking the Confirm link in your email'
+			flash[:error] = 'Sorry your token did not match our records. Please re-subscribe or try re-clicking the Confirm link in your email'
 		  redirect_to home_path
 		elsif params[:do] == 'confirm'
 			@subscriber.active = true
 			@subscriber.save
-			flash[:notice] = 'Thank you! Your email address has been confirmed! Expect your daily email to arrive everyday'
+			flash[:success] = 'Thank you! Your email address has been confirmed! Expect your daily email to arrive everyday'
       puts 'Confirmed'
 			redirect_to home_path
 	  

@@ -1,13 +1,24 @@
-<h1>Welcome to Pecunia Nunc</h1>
+<div class="gradient">
+	<div class="row">
+		<div id="logo">Pecunia Nunc</div>
+	</div>
+	<div class="row">
+		<div class="span12">
+			<div class="content">
+				<h1>Hey. We love you!</h1>
+				<p>Our website is launching very soon.<br />Leave us your email below, and we’ll notify the minute we open the doors.</p>
+				<%= form_for @subscriber, class: 'form-horizontal', url: '/new' do |f| %>
+					<%= render 'shared/errors' %>
+					
+				  <!-- <%= f.label :name %> -->
+				  <%= f.text_field :name, placeholder: 'Name', class: 'input-large' %><br />
 
-	<%= form_for @subscriber, url: '/new' do |f| %>
-		<%= render 'shared/errors' %>
-		
-	  <%= f.label :name %>
-	  <%= f.text_field :name %><br />
+				  <!-- <%= f.label :email %> -->
+				  <%= f.text_field :email, placeholder: 'Email', class: 'input-large' %><br />
 
-	  <%= f.label :email %>
-	  <%= f.text_field :email %><br />
-
-  <%= f.submit %>
-<% end %>
+				  <%= f.submit class: 'btn btn-large'%>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
