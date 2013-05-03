@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>PecuniaNunc</title>
+	<title>Pecunia Nunc</title>
 	<%= stylesheet_link_tag    "application", :media => "all" %>
 	<%= javascript_include_tag "application" %>
 	<%= csrf_meta_tags %>
@@ -11,13 +11,20 @@
 </head>
 
 <body>
-  <% flash.each do |key, value| %>
+	<header>
+		<% flash.each do |key, value| %>
 		<!-- <div class="alert alert-<%= key %>"><%= value %></div> -->
 		<%= content_tag(:div, value, class: "alert alert-#{key}") %>
-	<% end %>
-		<div class="container">
-			<%= yield %>
-		</div>
+		<% end %>
+					<%= render 'shared/errors' %>
+	</header>
+	<div class="container">
+		<%= yield %>
+	</div>
+	<footer align="center">
+		This website has NO AFFLIATION WHATSOEVER with 
+		<a href="http://www.kickstarter.com">Kickstarter</a> and is NOT ENDORSED by the Kickstarter team. Functionality is not guaranteed. This is a personal side project.
+	</footer>
 </body>
 
 </html>

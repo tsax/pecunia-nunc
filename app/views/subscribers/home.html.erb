@@ -5,10 +5,9 @@
 	<div class="row">
 		<div class="span12">
 			<div class="content">
-				<h1>Hey. We love you!</h1>
-				<p>Our website is launching very soon.<br />Leave us your email below, and we’ll notify the minute we open the doors.</p>
+				<h1>Hey there!</h1>
+				<p>Receive a daily email digest of Kickstarter projects ending the same day<br />Leave your name and email below to get started.</p>
 				<%= form_for @subscriber, class: 'form-horizontal', url: '/new' do |f| %>
-					<%= render 'shared/errors' %>
 					
 				  <!-- <%= f.label :name %> -->
 				  <%= f.text_field :name, placeholder: 'Name', class: 'input-large' %><br />
