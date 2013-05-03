@@ -10,7 +10,7 @@ class SubscribersController < ApplicationController
 		@subscriber.token = Digest::SHA1.hexdigest([Time.now, rand].join)
 		if @subscriber.save
 			flash[:success] = "Thanks for signing-up. Please confirm your email address through the email that'll be in your inbox shortly!"
-
+			SubscriberMailer.confirmation_email(@subscriber).deliver
 			redirect_to home_path
 		else
 			flash[:notice] = "There were errors! Please resubmit after making corrections."

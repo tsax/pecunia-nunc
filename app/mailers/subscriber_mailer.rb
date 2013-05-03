@@ -1,8 +1,8 @@
 class SubscriberMailer < ActionMailer::Base
   default from: "pecunia-nunc@tusharsaxena.com"
-  @@request = "http://localhost:3000"
+  @@request = "http://pecunia-nunc.herokuapp.com"
 
-  def confirmation_mail(subscriber)
+  def confirmation_email(subscriber)
   	@subscriber = subscriber
   	@url = "#{@@request}?do=confirm&&token=#{@subscriber.token}"
   	# @url = "#{request.fullpath.split("?")[0]}?do=confirm&&token=#{@subscriber.token}"

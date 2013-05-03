@@ -19,6 +19,7 @@ end
 
 group :production do
 	gem 'pg', '0.12.2'
+	gem 'thin'
 end
 # Gems used only for assets and not required
 # in production environments by default.
