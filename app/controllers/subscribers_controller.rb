@@ -26,17 +26,17 @@ class SubscribersController < ApplicationController
 		  redirect_to home_path
 		elsif params[:do] == 'confirm'
 			@subscriber.active = true
-			@subscriber.save
-			flash[:success] = 'Thank you! Your email address has been confirmed! Expect your daily email to arrive everyday'
-      puts 'Confirmed'
-			redirect_to home_path
+			if @subscriber.save
+				flash[:success] = 'Thank you! Your email address has been confirmed! Expect your daily email to arrive everyday'
+	      puts 'Confirmed'
+				render 'home'
 	  
 	  elsif params[:do] == 'unsubscribe'
 	  	@subscriber.active = false
 	  	@subscriber.save
 	  	flash[:notice] = 'Sorry to see you go! You have been unsubscribed'
 	  	puts 'Unsubscribed'
-			redirect_to home_path
+			render 'home'
 	  else
     	puts 'This should not happen'
 	  	redirect_to home_path
