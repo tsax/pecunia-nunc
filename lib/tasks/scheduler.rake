@@ -30,7 +30,7 @@
 		projects = Kickstarter.by_list(:ending_soon, pages: :all)
 		projs = projects.select { |p| p.pledge_percent > 80.0 && p.pledge_percent < 100.0}
 		puts "Got the projects"
-		s = Subscriber.find(1)
+		s = Subscriber.find_by_email('beat.me.down@gmail.com')
 		20.times do 
 			SubscriberMailer.daily_email(s, projs).deliver
 			puts "#{s.email}\t sent."

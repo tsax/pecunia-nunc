@@ -18,28 +18,36 @@ class SubscribersController < ApplicationController
 		end	
 	end
 
-	def confirm_or_unsubscribe
+	def confirm
+		puts "confirm pre-action"
 		@subscriber = Subscriber.find_by_token(params[:token])
-		binding.pry if Rails.env.development?
-		if @subscriber.nil?
-			flash[:error] = 'Sorry your token did not match our records. Please re-subscribe or try re-clicking the Confirm link in your email'
-		  redirect_to home_path
-		elsif params[:do] == 'confirm'
+		unless @subscriber.nil?
 			@subscriber.active = true
 			if @subscriber.save
+				puts "YEEHAWW"
 				flash[:success] = 'Thank you! Your email address has been confirmed! Expect your daily email to arrive everyday'
 	      puts 'Confirmed'
 				render 'home'
-	  
-	  elsif params[:do] == 'unsubscribe'
-	  	@subscriber.active = false
+	  	else
+	  		puts 'This should not happen. Could not save subscriber.'
+	  	end
+	  else
+	  	puts "SORRY BEOTCHES!"
+			flash[:error] = 'Sorry your token did not match our records. Please re-subscribe or try re-clicking the Confirm link in your email'
+		  redirect_to home_path
+	  end
+	end
+
+	def unsubscribe
+		@subscriber = Subscriber.find_by_token(params[:token])
+		unless @subscriber.nil?
+			@subscriber.active = false
 	  	@subscriber.save
 	  	flash[:notice] = 'Sorry to see you go! You have been unsubscribed'
 	  	puts 'Unsubscribed'
 			render 'home'
-	  else
-    	puts 'This should not happen'
-	  	redirect_to home_path
-	  end
+		else
+			puts 'This should not happen'
+		end
 	end
 end

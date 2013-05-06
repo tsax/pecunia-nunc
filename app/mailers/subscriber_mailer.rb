@@ -4,7 +4,7 @@ class SubscriberMailer < ActionMailer::Base
 
   def confirmation_email(subscriber)
   	@subscriber = subscriber
-  	@url = "#{@@request}?do=confirm&&token=#{@subscriber.token}"
+  	@url = "#{@@request}/confirm?token=#{@subscriber.token}"
   	# @url = "#{request.fullpath.split("?")[0]}?do=confirm&&token=#{@subscriber.token}"
   	mail to: @subscriber.email, subject: "Welcome to Pecunia Nunc. Please confirm this address"
   end
@@ -12,7 +12,7 @@ class SubscriberMailer < ActionMailer::Base
   def daily_email(subscriber, projects)
   	@subscriber = subscriber
   	@projects = projects
-  	@url = "#{@@request}?do=unsubscribe&&token=#{@subscriber.token}"
+  	@url = "#{@@request}/unsubscribe?token=#{@subscriber.token}"
   	# @url = "#{request.fullpath.split("?")[0]}?do=unsubscribe&&token=#{@subscriber.token}"
   	mail to: @subscriber.email, subject: "Kickstarters Ending Today"
   end

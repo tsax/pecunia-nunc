@@ -1,9 +1,9 @@
 PecuniaNunc::Application.routes.draw do  
   root to: "subscribers#home"
   get 'home' => 'subscribers#home', as: 'home' 
-  post '/new' => 'subscribers#new'
-  get '/confirm' => 'subscribers#confirm_or_unsubscribe'
-  get '/unsubscribe' => 'subscribers#confirm_or_unsubscribe'
+  post 'new' => 'subscribers#new'
+  get 'confirm' => 'subscribers#confirm'
+  get 'unsubscribe' => 'subscribers#unsubscribe'
   # resources :subscribers
 
 
