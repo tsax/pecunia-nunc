@@ -12,14 +12,18 @@
 	  puts "Got the projects!"
 	  Subscriber.all.each do |sub|
 	  	puts "#{sub.email}\t"
-	  	if sub.last_email.nil? || sub.last_email.strftime("%F") < Time.now.strftime("%F")
-	  		SubscriberMailer.daily_email(sub, projs).deliver
-	  		sub.last_email = Time.now
-	  		sub.save
-	  		puts "#{sub.email}\tsent."  
-	  	else
-	  		puts "No email should be sent as it has already been sent for the day."
-	  	end
+	  	if sub.active
+		  	if sub.last_email.nil? || sub.last_email.strftime("%F") < Time.now.strftime("%F")
+		  		SubscriberMailer.daily_email(sub, projs).deliver
+		  		sub.last_email = Time.now
+		  		sub.save
+		  		puts "#{sub.email}\tsent."  
+		  	else
+		  		puts "No email should be sent as it has already been sent for the day."
+		  	end
+		  else
+		  	puts "Subscriber is not active. Send no email."
+		  end
 	  end
 	  puts "done."
 	end
