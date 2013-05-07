@@ -1,7 +1,11 @@
 class SubscriberMailer < ActionMailer::Base
   default from: "pecunia-nunc@tusharsaxena.com"
-  @@request = "http://pecunia-nunc.herokuapp.com"
-
+  if Rails.env.production?
+    @@request = "http://pecunia-nunc.herokuapp.com"
+  else
+    @@request = "http://pecunia-nunc.dev"
+  end
+  
   def confirmation_email(subscriber)
   	@subscriber = subscriber
   	@url = "#{@@request}/confirm?token=#{@subscriber.token}"

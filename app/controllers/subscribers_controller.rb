@@ -32,7 +32,7 @@ class SubscribersController < ApplicationController
 	  		puts 'This should not happen. Could not save subscriber.'
 	  	end
 	  else
-	  	puts "SORRY BEOTCHES!"
+	  	puts "SORRY TO SEE YOU GO!"
 			flash[:error] = 'Sorry your token did not match our records. Please re-subscribe or try re-clicking the Confirm link in your email'
 		  redirect_to home_path
 	  end
@@ -43,9 +43,10 @@ class SubscribersController < ApplicationController
 		unless @subscriber.nil?
 			@subscriber.active = false
 	  	@subscriber.save
-	  	flash[:notice] = 'Sorry to see you go! You have been unsubscribed'
+	  	flash[:notice] = "Sorry to see you go! You have been unsubscribed. You'll be able to re-subscribe after a week."
 	  	puts 'Unsubscribed'
-			render 'home'
+			redirect_to home_path
+			# render 'home'
 		else
 			puts 'This should not happen'
 		end
