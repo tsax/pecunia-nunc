@@ -18,14 +18,17 @@ PecuniaNunc::Application.configure do
 
   config.action_mailer.delivery_method = :smtp
   
-  config.action_mailer.smtp_settings = {
-    address: "smtp.mandrillapp.com",
-    port: 587,
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: ENV["MANDRILL_USERNAME"],
-    password: ENV["MANDRILL_PASSWORD"]
+  config.action_mailer.smtp_settings = { 
+    :address => "localhost", :port => 1025 
   }
+  # config.action_mailer.smtp_settings = {
+  #   address: "smtp.mandrillapp.com",
+  #   port: 587,
+  #   authentication: "plain",
+  #   enable_starttls_auto: true,
+  #   user_name: ENV["MANDRILL_USERNAME"],
+  #   password: ENV["MANDRILL_PASSWORD"]
+  # }
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 
