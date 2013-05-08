@@ -41,6 +41,11 @@
 		end
 	end
 	
+	desc "This task cleans up all the unsubscribed users by deletion"
+	task :cleanup_unsubscribers => :environment do
+		Subscriber.where(:active => false).each { |s| s.destroy }
+	end
+
 	task :update_listing => :environment do
 	  #User.send_reminders
 	  puts "Sending daily project listing..."
