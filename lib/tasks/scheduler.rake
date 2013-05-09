@@ -19,13 +19,13 @@
 		  		sub.save
 		  		puts "#{sub.email}\tsent."  
 		  	else
-		  		puts "No email should be sent as it has already been sent for the day."
+		  		puts "Subscriber #{sub.email} No email should be sent as it has already been sent for the day."
 		  	end
 		  else
-		  	puts "Subscriber is not active. Send no email."
+		  	puts "Subscriber #{sub.email} is not active. Send no email."
 		  end
 	  end
-	  puts "done."
+	  puts "Emails sent."
 	end
 
 	desc "This task tests out the daily email using only one subscriber 20 times"
