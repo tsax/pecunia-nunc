@@ -1,49 +1,81 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
-    <style type="text/css">
-      
-      h3 {
-        color: #76CC1E;
-      }
-      #progressbar {
-        background-color: black;
-        border-radius: 10px; /* (height of inner div) / 2 + padding */
-        padding: 3px;
-        width: 350px;
-      }
-      #progressbar div {
-        background-color: #76CC1E;
-        width: 40%; /* Adjust with JavaScript */
-        height: 15px;
-        border-radius: 10px;
-        font-size: x-small; 
-        text-align: center;
-        vertical-align: middle;
-      }
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  <style type="text/css">
 
-    </style>
-  </head>
-  <body>
-    <h1>Good Morning, <%= @subscriber.name.titleize %>!</h1>
-    <h3>
-      Here is a your daily list of Kickstarter projects ending today<br/>
-    </h3>
-    <% @projects.each do |project| %>
-      <div class="project">
-        <p><a href=<%= project.short_url %>><%= project.name %></a></p> 
-        <p><%= project.pledge_deadline %></p>
-        <div id="progressbar">
-          <div style="width: <%= project.pledge_percent%>%;">
-            <%= project.pledge_percent %>%
-          </div>
-        </div>
+  h1, h4, h5, h6 {
+    font-family: 'Lucida Grande';
+  }
+  h3 {
+    font-family: 'Lucida Console';
+    color: #76CC1E;
+  }
+  #progressbar {
+    background-color: black;
+    border-radius: 10px; /* (height of inner div) / 2 + padding */
+    padding: 3px;
+    width: 350px;
+    margin: 7px;
+  }
+  #progressbar div {
+    background-color: #76CC1E;
+    width: 40%; /* Adjust with JavaScript */
+    height: 15px;
+    border-radius: 10px;
+    font-size: x-small; 
+    text-align: center;
+    vertical-align: middle;
+  }
+  .title{
+    font-family: 'Lucida Grande';
+    margin: 0px 0px 0px 10px;
+  }
+  .date {
+    font-family: 'Lucida Console';
+    font-weight: bold;
+    font-size: x-small;
+    margin: 0px 0px 0px 10px;
+  }
+  .project {
+    border-color: black;
+    border-style: solid;
+    border-width: 1.5px;
+    padding: 7px;
+    border-radius: 5px;
+    margin: 5px 0px;
+  }
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #76CC1E;
+  }
+
+  </style>
+</head>
+<body>
+  <h1>Good Morning, <%= @subscriber.name.titleize %>!</h1>
+  <h3>
+    Here is a your daily list of Kickstarter projects ending today<br/>
+  </h3>
+  <% @projects.each do |project| %>
+  <div class="project">
+    <p class="title">
+      <a href=<%= project.short_url %>><%= project.name %></a>
+    </p> 
+    <div id="progressbar">
+      <div style="width: <%= project.pledge_percent%>%;">
+        <%= project.pledge_percent %>%
       </div>
-    <% end %>
-    <br/>
-    <h4>Thanks for subscribing and have a fantastic day!</h4>
-    <h4>- The Pecunia Nunc Team</h4>
-    <h6>If you wish to unsubscribe, please <a href=<%=@url%>>click here.</a>
-  </body>
+    </div>
+    <p class="date"><%= project.pledge_deadline %></p>
+  </div>
+  <% end %>
+  <h4>Thanks for subscribing and have a fantastic day!</h4>
+  <h4>- The Pecunia Nunc Team</h4>
+  <h6>If you wish to unsubscribe, please <a href=<%=@url%>>click here.</a>
+</body>
 </html>

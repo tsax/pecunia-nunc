@@ -1,5 +1,5 @@
 class SubscriberMailer < ActionMailer::Base
-  default from: "pecunia-nunc@tusharsaxena.com"
+  default from: "Pecunia Nunc <pecunia-nunc@tusharsaxena.com>"
   if Rails.env.production?
     @@request = "http://pecunia-nunc.herokuapp.com"
   else
