@@ -6,6 +6,7 @@ gem 'rails', '3.2.12'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'kickstarter', :git => 'https://github.com/tsax/kickstarter.git', :branch => 'project-category'
+gem 'premailer-rails'
 
 group :development do
 	gem 'sqlite3'	

@@ -2,6 +2,21 @@
 <html>
   <head>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <style type="text/css">
+        #progressbar {
+      background-color: black;
+      border-radius: 13px; /* (height of inner div) / 2 + padding */
+      padding: 3px;
+      width: 350px;
+    }
+    
+    #progressbar div {
+       background-color: orange;
+       width: 40%; /* Adjust with JavaScript */
+       height: 20px;
+       border-radius: 10px;
+    }
+    </style>
   </head>
   <body>
     <h1>Good Morning, <%= @subscriber.name %>!</h1>
@@ -9,8 +24,14 @@
       Here is a your daily list of Kickstarter projects ending today<br/>
     </h3>
     <% @projects.each do |project| %>
-      <p><a href=<%= project.short_url %>><%= project.name %></a></p> <p> 
-      <%= project.pledge_deadline %></p>
+      <p><a href=<%= project.short_url %>><%= project.name %></a></p> 
+      <p><%= project.pledge_deadline %></p>
+      <div id="progressbar">
+        <div style="width: <%= project.pledge_percent%>%;
+          font-size: x-small; text-align: center">
+          <%= project.pledge_percent %>
+        </div>
+      </div>
     <% end %><br/>
     <h4>Thanks for subscribing and have a fantastic day!</h4>
     <h4>- The Pecunia Nunc Team</h4>
