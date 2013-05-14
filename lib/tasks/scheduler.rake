@@ -41,6 +41,16 @@
 		end
 	end
 	
+	desc "This task tests email using 3 random projects"
+	task :test_three_projects => :environment do
+		projects = Kickstarter.by_list(:ending_soon, :pages => 1).select{|p| p.pledge_percent < 99.0 }[0..2]
+		puts "Retrieved 3 random projects."
+		s = Subscriber.find_by_email('beat.me.down@gmail.com')
+
+		SubscriberMailer.daily_email(s, projects).deliver
+		puts "#{s.email}\t sent."
+	end
+
 	desc "This task cleans up all the unsubscribed users by deletion"
 	task :cleanup_unsubscribers => :environment do
 		Subscriber.where(:active => false).each { |s| s.destroy }
