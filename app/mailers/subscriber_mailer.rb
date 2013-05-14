@@ -18,6 +18,6 @@ class SubscriberMailer < ActionMailer::Base
   	@projects = projects
   	@url = "#{@@request}/unsubscribe?token=#{@subscriber.token}"
   	# @url = "#{request.fullpath.split("?")[0]}?do=unsubscribe&&token=#{@subscriber.token}"
-  	mail to: @subscriber.email, subject: "Kickstarters Ending Today"
+  	mail to: @subscriber.email, subject: "Hi #{@subscriber.name.titleize}! Kickstarters Ending Today"
   end
 end
