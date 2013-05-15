@@ -5,7 +5,6 @@
   <style type="text/css">
 
   h1, h4, h5, h6 {
-    clear: left;
     font-family: 'Lucida Grande';
   }
   h3 {
@@ -34,22 +33,31 @@
   }
   .owner{
     font-family: 'Trebuchet MS';
+    font-size: small;
     margin: 0px 0px 0px 10px;
   }
-  .date, .category {
+  .date {
     font-family: 'Lucida Console';
     font-weight: bold;
-    font-size: x-small;
+    float: left;
+    font-size: xx-small;
+    margin: 4px 0px 0px 10px;
+  }
+  .category {
+    font-family: 'Trebuchet MS';
+    font-style: italic;
+    font-size: small;
+    float: left;
     margin: 0px 0px 0px 10px;
   }
   .project {
-    float: left;
+    display: inline-block;
     border-color: black;
     border-style: solid;
     border-width: 1.5px;
     padding: 7px;
     border-radius: 5px;
-    margin: 5px 5px 5px 5px;
+    margin: 5px 0px;
   }
 
   a {
@@ -67,20 +75,22 @@
   <h3>
     Here is a your daily list of Kickstarter projects ending today<br/>
   </h3>
+  
   <% @projects.each do |project| %>
-  <div class="project">
-    <p class="title">
-      <a href=<%= project.short_url %>><%= project.name %></a>
-    </p> 
-    <p class="owner">by <%= project.owner %></p>
-    <div id="progressbar">
-      <div style="width: <%= project.pledge_percent > 100? 100: project.pledge_percent %>%"><%= project.pledge_percent%>%
+    <div class="project">
+      <p class="title">
+        <a href=<%= project.short_url %>><%= project.name %></a>
+      </p> 
+      <p class="owner">by <%= project.owner %></p>
+      <div id="progressbar">
+        <div style="width: <%= project.pledge_percent > 100? 100: project.pledge_percent %>%"><%= project.pledge_percent%>%
+        </div>
       </div>
+      <p class="category"><%= project.details_page.css('.category a').children[1].text.strip %></p>
+      <p class="date"><%= project.pledge_deadline %></p>
     </div>
-    <p class="date"><%= project.pledge_deadline %></p>
-    <p class="category"><%= project.details_page.css('.category a').children[1].text.strip %></p>
-  </div>
   <% end %>
+
   <h4>Thanks for subscribing and have a fantastic day!</h4>
   <h4>- The Pecunia Nunc Team</h4>
   <h6>If you wish to unsubscribe, please <a href=<%=@url%>>click here.</a>
