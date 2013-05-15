@@ -3,10 +3,7 @@
 	
 	task :send_daily_listing => :environment do
 		puts "Updating project listing..."
-  # Move project listing code into a model
-  # Call the model method here
-  # Make sure it updates a db
-  #NewsFeed.update
+
 	  projects = Kickstarter.by_list(:ending_soon, :pages => :all)
 	  projs = projects.select { |proj| proj.pledge_percent > 80.0 and proj.pledge_deadline.day == Time.now.day }
 	  puts "Got the projects!"
@@ -43,7 +40,7 @@
 	
 	desc "This task tests email using 3 random projects"
 	task :test_three_projects => :environment do
-		projects = Kickstarter.by_list(:ending_soon, :pages => 1).select{|p| p.pledge_percent < 99.0 }[0..2]
+		projects = Kickstarter.by_list(:ending_soon, :pages => 1)[0..2]
 		puts "Retrieved 3 random projects."
 		s = Subscriber.find_by_email('beat.me.down@gmail.com')
 
