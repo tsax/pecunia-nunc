@@ -11,6 +11,9 @@
     font-family: 'Lucida Console';
     color: #76CC1E;
   }
+  img {
+    margin: 7px 0px 0px 10px;
+  }
   #progressbar {
     background-color: black;
     border-radius: 10px; /* (height of inner div) / 2 + padding */
@@ -83,6 +86,7 @@
         <a href=<%= project.short_url %>><%= project.name %></a>
       </p> 
       <p class="owner">by <%= project.owner %></p>
+      <img src=<%= project.thumbnail_url %> />
       <div id="progressbar">
         <div style="width: <%= project.pledge_percent > 100? 100: project.pledge_percent %>%"><%= project.pledge_percent%>%
         </div>
