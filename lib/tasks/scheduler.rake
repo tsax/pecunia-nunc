@@ -30,7 +30,7 @@
 		puts "Testing daily email with first id"
 		projects = Kickstarter.by_list(:ending_soon, pages: :all)
 		projs = projects.select { |p| p.pledge_percent > 80.0 && p.pledge_percent < 100.0}
-		projs = projs.sort_by { |p| p.pledge_percent }
+		projs = projs.sort { |p1, p2| [p1.pledge_deadline, p1.pledge_percent] <=> [p2.pledge_deadline, p2.pledge_percent] }
 		puts "Got the projects"
 		s = Subscriber.find_by_email('beat.me.down@gmail.com')
 		20.times do 
