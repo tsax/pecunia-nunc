@@ -30,6 +30,7 @@
 		puts "Testing daily email with first id"
 		projects = Kickstarter.by_list(:ending_soon, pages: :all)
 		projs = projects.select { |p| p.pledge_percent > 80.0 && p.pledge_percent < 100.0}
+		projs = projs.sort_by { |p| p.pledge_percent }
 		puts "Got the projects"
 		s = Subscriber.find_by_email('beat.me.down@gmail.com')
 		20.times do 
@@ -39,8 +40,8 @@
 	end
 	
 	desc "This task tests email using 3 random projects"
-	task :test_three_projects => :environment do
-		projects = Kickstarter.by_list(:ending_soon, :pages => 1)[0..2]
+	task :test_five_projects => :environment do
+		projects = Kickstarter.by_list(:ending_soon, :pages => 1)[0..4].sort_by { |p| p.pledge_percent }
 		puts "Retrieved 3 random projects."
 		s = Subscriber.find_by_email('beat.me.down@gmail.com')
 

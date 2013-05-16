@@ -83,10 +83,10 @@
   <% @projects.each do |project| %>
     <div class="project">
       <p class="title">
-        <a href=<%= project.short_url %>><%= project.name %></a>
+        <a href=<%= project.url %>><%= project.name %></a>
       </p> 
       <p class="owner">by <%= project.owner %></p>
-      <img src=<%= project.thumbnail_url %> />
+      <img src="<%= project.thumbnail_url %>" alt="[project image here; enable images to see]" />
       <div id="progressbar">
         <div style="width: <%= project.pledge_percent > 100? 100: project.pledge_percent %>%"><%= project.pledge_percent%>%
         </div>
