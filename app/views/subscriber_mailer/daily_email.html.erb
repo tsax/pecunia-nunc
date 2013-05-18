@@ -18,7 +18,7 @@
     background-color: black;
     border-radius: 10px; /* (height of inner div) / 2 + padding */
     padding: 3px;
-    width: 350px;
+    width: 240px;
     margin: 7px;
   }
   #progressbar div {
@@ -60,7 +60,7 @@
     border-width: 1.5px;
     padding: 7px;
     border-radius: 5px;
-    max-width: 370px;
+    max-width: 250px;
     margin: 5px 0px;
   }
 
@@ -86,7 +86,7 @@
         <a href=<%= project.url %>><%= project.name %></a>
       </p> 
       <p class="owner">by <%= project.owner %></p>
-      <!-- <img src="<%= project.thumbnail_url %>" alt="[project image here; enable images to see]" /> -->
+      <img src="<%= project.thumbnail_url %>" alt="[project image here; enable images to see]" />
       <div id="progressbar">
         <div style="width: <%= project.pledge_percent > 100? 100: project.pledge_percent %>%"><%= project.pledge_percent%>%
         </div>
