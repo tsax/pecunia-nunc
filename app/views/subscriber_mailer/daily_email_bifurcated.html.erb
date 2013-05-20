@@ -32,6 +32,7 @@
   }
   .title{
     font-family: 'Lucida Grande';
+    color: 'black';
     margin: 0px 0px 0px 10px;
   }
   .owner{
@@ -77,9 +78,12 @@
 <body>
   <h1>Good Morning, <%= @subscriber.name.split(' ')[0].titleize %>!</h1>
   <h3>
-    These Kickstarter projects need your help. Check them out below (They end within 2 days): <br/>
+    These Kickstarter projects need your help. <br/>
+    Check them out below (They end within 2 days):
   </h3>
-  
+  <h5>
+    [Now with tooltips: Hover over project images to see a description]
+  </h5>  
   <% @unfunded.each do |project| %>
     <div class="project">
       <p class="title">
