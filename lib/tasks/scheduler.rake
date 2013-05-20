@@ -28,13 +28,16 @@
 	desc "This task tests out the daily email using only one subscriber 20 times"
 	task :test_daily_email => :environment do
 		puts "Testing daily email with first id"
-		projects = Kickstarter.by_list(:ending_soon, pages: :all)
-		projs = projects.select { |p| p.pledge_percent > 80.0 && p.pledge_percent < 100.0}
-		projs = projs.sort { |p1, p2| [p1.pledge_deadline, p1.pledge_percent] <=> [p2.pledge_deadline, p2.pledge_percent] }
+		
+		projects = Kickstarter.by_list(:ending_soon, pages: :all).select {|p| p.pledge_deadline.strftime("%F") < (Time.now + 3*24*60*60).strftime("%F") && p.pledge_percent > 74.9}
+	  unfunded, funded = projects.partition { |p| p.pledge_percent < 100.0 }
+	  # unfunded = unfunded.select { |p| p.pledge_percent > 74.9 }
+	  funded = funded.sort { |p1, p2| [p2.pledge_percent] <=> [p1.pledge_percent] }[0..4]
+		
 		puts "Got the projects"
 		s = Subscriber.find_by_email('beat.me.down@gmail.com')
-		20.times do 
-			SubscriberMailer.daily_email(s, projs).deliver
+		5.times do 
+			SubscriberMailer.daily_email_bifurcated(s, unfunded, funded).deliver
 			puts "#{s.email}\t sent."
 		end
 	end

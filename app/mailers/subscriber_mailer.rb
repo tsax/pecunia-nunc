@@ -20,4 +20,14 @@ class SubscriberMailer < ActionMailer::Base
   	# @url = "#{request.fullpath.split("?")[0]}?do=unsubscribe&&token=#{@subscriber.token}"
   	mail to: @subscriber.email, subject: "Hi #{@subscriber.name.titleize}! Kickstarters Ending Today"
   end
+
+  def daily_email_bifurcated(subscriber, unfunded, funded)
+    @subscriber = subscriber
+    @unfunded = unfunded
+    @funded = funded
+    @url = "#{@@request}/unsubscribe?token=#{@subscriber.token}"
+    # @url = "#{request.fullpath.split("?")[0]}?do=unsubscribe&&token=#{@subscriber.token}"
+    mail to: @subscriber.email, subject: "Hi #{@subscriber.name.titleize}! Kickstarters Ending Today"
+  end
+
 end

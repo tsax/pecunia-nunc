@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  <style type="text/css">
+
+  h1, h4, h5, h6 {
+    font-family: 'Lucida Grande';
+  }
+  h3 {
+    font-family: 'Lucida Console';
+    color: #76CC1E;
+  }
+  img {
+    margin: 7px 0px 0px 10px;
+  }
+  #progressbar {
+    background-color: black;
+    border-radius: 10px; /* (height of inner div) / 2 + padding */
+    padding: 3px;
+    width: 240px;
+    margin: 7px;
+  }
+  #progressbar div {
+    background-color: #76CC1E;
+    width: 40%; /* Adjust with JavaScript */
+    height: 15px;
+    border-radius: 10px;
+    font-size: x-small; 
+    text-align: center;
+    vertical-align: middle;
+  }
+  .title{
+    font-family: 'Lucida Grande';
+    margin: 0px 0px 0px 10px;
+  }
+  .owner{
+    font-family: 'Trebuchet MS';
+    font-size: small;
+    margin: 0px 0px 0px 10px;
+  }
+  .date {
+    font-family: 'Lucida Console';
+    font-weight: bold;
+    float: left;
+    font-size: xx-small;
+    margin: 4px 0px 0px 10px;
+  }
+  .category {
+    font-family: 'Trebuchet MS';
+    font-style: italic;
+    font-size: small;
+    float: left;
+    margin: 0px 0px 0px 10px;
+  }
+  .project {
+    display: inline-block;
+    border-color: black;
+    border-style: solid;
+    border-width: 1.5px;
+    padding: 7px;
+    border-radius: 5px;
+    max-width: 250px;
+    margin: 5px 0px;
+  }
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #76CC1E;
+  }
+
+  </style>
+</head>
+<body>
+  <h1>Good Morning, <%= @subscriber.name.split(' ')[0].titleize %>!</h1>
+  <h3>
+    Here is a your daily list of Kickstarter projects ending today<br/>
+  </h3>
+  
+  <% @unfunded.each do |project| %>
+    <div class="project">
+      <p class="title">
+        <a href=<%= project.url %>><%= project.name %></a>
+      </p> 
+      <p class="owner">by <%= project.owner %></p>
+      <img src="<%= project.thumbnail_url %>" alt="[project image here; enable images to see]" title="<%= project.description %>"/>
+      <div id="progressbar">
+        <div style="width: <%= project.pledge_percent > 100? 100: project.pledge_percent %>%"><%= project.pledge_percent%>%
+        </div>
+      </div>
+      <p class="category"><%= project.details_page.css('.category a').children[1].text.strip %></p>
+      <p class="date"><%= project.pledge_deadline %></p>
+    </div>
+  <% end %>
+
+  <% @funded.each do |project| %>
+    <div class="project">
+      <p class="title">
+        <a href=<%= project.url %>><%= project.name %></a>
+      </p> 
+      <p class="owner">by <%= project.owner %></p>
+      <img src="<%= project.thumbnail_url %>" alt="[project image here; enable images to see]" title="<%= project.description %>"/>
+      <div id="progressbar">
+        <div style="width: <%= project.pledge_percent > 100? 100: project.pledge_percent %>%"><%= project.pledge_percent%>%
+        </div>
+      </div>
+      <p class="category"><%= project.details_page.css('.category a').children[1].text.strip %></p>
+      <p class="date"><%= project.pledge_deadline %></p>
+    </div>
+  <% end %>
+
+  <h4>Thanks for subscribing and have a fantastic day!</h4>
+  <h4>- The Pecunia Nunc Team</h4>
+  <h6>All feedback is welcome. Just reply to this email!</h6>
+  <h6>If you wish to unsubscribe, please <a href=<%=@url%>>click here.</a>
+</body>
+</html>
