@@ -29,9 +29,8 @@
 	task :test_daily_email => :environment do
 		puts "Testing daily email with first id"
 		
-		projects = Kickstarter.by_list(:ending_soon, pages: :all).select {|p| p.pledge_deadline.strftime("%F") < (Time.now + 3*24*60*60).strftime("%F") && p.pledge_percent > 74.9}
+		projects = Kickstarter.by_list(:ending_soon, pages: :all).select {|p| p.pledge_deadline.strftime("%F") < (Time.now + 3*24*60*60).strftime("%F") && p.pledge_percent > 79.9}
 	  unfunded, funded = projects.partition { |p| p.pledge_percent < 100.0 }
-	  # unfunded = unfunded.select { |p| p.pledge_percent > 74.9 }
 	  funded = funded.sort { |p1, p2| [p2.pledge_percent] <=> [p1.pledge_percent] }[0..4]
 		
 		puts "Got the projects"
