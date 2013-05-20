@@ -1,17 +1,19 @@
 	
-	desc "This task is called by the Heroku scheduler add-on"
+	desc "Task: Send the daily digest"
 	
 	task :send_daily_listing => :environment do
 		puts "Updating project listing..."
 
-	  projects = Kickstarter.by_list(:ending_soon, :pages => :all)
-	  projs = projects.select { |proj| proj.pledge_percent > 80.0 and proj.pledge_deadline.day == Time.now.day }
+		projects = Kickstarter.by_list(:ending_soon, pages: :all).select {|p| p.pledge_deadline.strftime("%F") < (Time.now + 3*24*60*60).strftime("%F") && p.pledge_percent > 79.9}
+	  unfunded, funded = projects.partition { |p| p.pledge_percent < 100.0 }
+	  funded = funded.sort { |p1, p2| [p2.pledge_percent] <=> [p1.pledge_percent] }[0..4]
+
 	  puts "Got the projects!"
 	  Subscriber.all.each do |sub|
 	  	puts "#{sub.email}\t"
 	  	if sub.active
 		  	if sub.last_email.nil? || sub.last_email.strftime("%F") < Time.now.strftime("%F")
-		  		SubscriberMailer.daily_email(sub, projs).deliver
+		  		SubscriberMailer.daily_email_bifurcated(sub, unfunded, funded).deliver
 		  		sub.last_email = Time.now
 		  		sub.save
 		  		puts "#{sub.email}\tsent."  
