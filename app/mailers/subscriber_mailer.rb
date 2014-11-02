@@ -1,3 +1,6 @@
+require 'open-uri'
+require 'open_uri_redirections'
+
 class SubscriberMailer < ActionMailer::Base
   default from: "Pecunia Nunc <pecunia-nunc@tusharsaxena.com>"
   if Rails.env.production?
