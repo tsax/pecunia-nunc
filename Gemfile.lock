@@ -91,6 +91,7 @@ GEM
     mime-types (1.23)
     multi_json (1.7.3)
     nokogiri (1.5.9)
+    open_uri_redirections (0.1.4)
     pg (0.12.2)
     polyglot (0.3.3)
     premailer (1.7.3)
@@ -183,6 +184,7 @@ DEPENDENCIES
   jquery-rails
   kickstarter!
   meta_request
+  open_uri_redirections
   pg (= 0.12.2)
   premailer-rails
   pry-debugger
