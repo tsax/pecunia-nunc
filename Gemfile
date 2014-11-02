@@ -7,6 +7,7 @@ gem 'rails', '3.2.12'
 
 gem 'kickstarter', :git => 'https://github.com/tsax/kickstarter.git', :branch => 'project-category'
 gem 'premailer-rails'
+gem 'open_uri_redirections'
 
 group :development do
 	gem 'sqlite3'	
