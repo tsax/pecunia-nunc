@@ -54,6 +54,26 @@
 		SubscriberMailer.daily_email(s, projects).deliver
 		puts "#{s.email}\t sent."
 	end
+	
+	desc "This task tests methods of the Project object and sends email if any used method errors out"
+	task :pre_send_property_test => :environment do 
+		project = Kickstarter.by_list(:ending_soon, pages: 1).sample
+		error_hash = Hash.new
+		
+		error_hash[:name] = project.name.nil? rescue 'nil'
+		error_hash[:url] = project.url.nil? rescue 'nil'
+		error_hash[:owner] = project.owner.nil? rescue 'nil'
+		error_hash[:thumbnail] = project.thumbnail_url.nil? rescue 'nil'
+		error_hash[:description] = project.description.nil? rescue 'nil'
+		error_hash[:pledge_percent] = project.pledge_percent.nil? rescue 'nil'
+		error_hash[:category] = project.details_page.css('.category a').children[1].text.strip.nil? rescue 'nil'
+		error_hash[:pledge_deadline] = project.pledge_deadline.nil? rescue 'nil'
+
+		if error_hash.values.any? {|key| key == 'nil'}
+			ReportingMailer.project_errors_email(error_hash.select {|k,v| v == 'nil'}.keys).deliver
+		end
+
+	end
 
 	desc "This task cleans up all the unsubscribed users by deletion"
 	task :cleanup_unsubscribers => :environment do
