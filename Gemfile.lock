@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/tsax/kickstarter.git
-  revision: d4c5266b5e62bd2ca853ec58229b55ca8d536927
+  revision: 0bdb6270b1d125bb9f175624468ea6c1f5824e8e
   branch: project-category
   specs:
     kickstarter (0.0.3)
@@ -89,10 +89,10 @@ GEM
       railties
     method_source (0.8.1)
     mime-types (1.23)
-    mini_portile (0.6.0)
+    mini_portile (0.6.1)
     multi_json (1.7.3)
-    nokogiri (1.6.3.1)
-      mini_portile (= 0.6.0)
+    nokogiri (1.6.4.1)
+      mini_portile (~> 0.6.0)
     open_uri_redirections (0.1.4)
     pg (0.12.2)
     polyglot (0.3.3)
