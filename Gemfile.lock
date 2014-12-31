@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/tsax/kickstarter.git
-  revision: 70803854e6b81c9cb54f361b1b867d4950415f8c
+  revision: 8ed57586ada28ce8d71ad71ad1f83b7593d62772
   branch: project-category
   specs:
     kickstarter (0.0.3)
