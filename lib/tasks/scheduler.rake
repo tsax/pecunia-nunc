@@ -54,6 +54,16 @@
 		SubscriberMailer.daily_email(s, projects).deliver
 		puts "#{s.email}\t sent."
 	end
+
+	desc "This task tests email using 3 random projects"
+	task :test_five_projects_ending_soon => :environment do
+		projects = Kickstarter.by_list_ending_soon(:pages => 1)[0..4].sort_by { |p| p.pledge_percent }
+		puts "Retrieved 3 random projects."
+		s = Subscriber.find_by_email('beat.me.down@gmail.com')
+
+		SubscriberMailer.daily_email(s, projects).deliver
+		puts "#{s.email}\t sent."
+	end
 	
 	desc "This task tests methods of the Project object and sends email if any used method errors out"
 	task :pre_send_property_test => :environment do 
@@ -66,7 +76,7 @@
 		error_hash[:thumbnail] = project.thumbnail_url.nil? rescue 'nil'
 		error_hash[:description] = project.description.nil? rescue 'nil'
 		error_hash[:pledge_percent] = project.pledge_percent.nil? rescue 'nil'
-		error_hash[:category] = project.details_page.css('.category a').children[1].text.strip.nil? rescue 'nil'
+		error_hash[:category] = project.category.nil? rescue 'nil'
 		error_hash[:pledge_deadline] = project.pledge_deadline.nil? rescue 'nil'
 
 		if error_hash.values.any? {|key| key == 'nil'}
