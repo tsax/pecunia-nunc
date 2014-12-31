@@ -4,7 +4,8 @@
 	task :send_daily_listing => :environment do
 		puts "Updating project listing..."
 
-		projects = Kickstarter.by_list(:ending_soon, pages: :all).select {|p| p.pledge_deadline.strftime("%F") < (Time.now + 3*24*60*60).strftime("%F") && p.pledge_percent > 79.9}
+		# projects = Kickstarter.by_list(:ending_soon, pages: :all).select {|p| p.pledge_deadline.strftime("%F") < (Time.now + 3*24*60*60).strftime("%F") && p.pledge_percent > 79.9}
+		projects = Kickstarter.by_list_ending_soon(pages: :all).select {|p| p.pledge_deadline.strftime("%F") < (Time.now + 3*24*60*60).strftime("%F") && p.pledge_percent > 79.9}
 	  unfunded, funded = projects.partition { |p| p.pledge_percent < 100.0 }
 	  funded = funded.sort { |p1, p2| [p2.pledge_percent] <=> [p1.pledge_percent] }[0..4]
 
