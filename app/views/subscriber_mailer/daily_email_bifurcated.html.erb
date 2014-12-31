@@ -95,7 +95,7 @@
         <div style="width: <%= project.pledge_percent > 100? 100: project.pledge_percent %>%"><%= project.pledge_percent%>%
         </div>
       </div>
-      <p class="category"><%= project.details_page.css('.category a').children[1].text.strip %></p>
+      <p class="category"><%= project.category %></p>
       <p class="date"><%= project.pledge_deadline %></p>
     </div>
   <% end %>
@@ -115,7 +115,7 @@
         <div style="width: <%= project.pledge_percent > 100? 100: project.pledge_percent %>%"><%= project.pledge_percent%>%
         </div>
       </div>
-      <p class="category"><%= project.details_page.css('.category a').children[1].text.strip %></p>
+      <p class="category"><%= project.category %></p>
       <p class="date"><%= project.pledge_deadline %></p>
     </div>
   <% end %>
