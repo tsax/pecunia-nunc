@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/tsax/kickstarter.git
-  revision: 6b8bab5dd725027ca2ac635a9a667028ecd20639
-  branch: project-category
+  revision: 5a9013196537094bc1a9699de04cde384495a510
+  branch: master
   specs:
     kickstarter (0.0.3)
       nokogiri
