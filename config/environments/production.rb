@@ -29,14 +29,24 @@ PecuniaNunc::Application.configure do
 
   config.action_mailer.delivery_method = :smtp
   
+  # config.action_mailer.smtp_settings = {
+  #   address: "smtp.mandrillapp.com",
+  #   port: 587,
+  #   authentication: "plain",
+  #   enable_starttls_auto: true,
+  #   user_name: ENV["MANDRILL_USERNAME"],
+  #   password: ENV["MANDRILL_PASSWORD"]
+  # }
+
   config.action_mailer.smtp_settings = {
-    address: "smtp.mandrillapp.com",
+    address: "smtp.sendgrid.net",
     port: 587,
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV["MANDRILL_USERNAME"],
-    password: ENV["MANDRILL_PASSWORD"]
+    user_name: ENV["SENDGRID_USERNAME"],
+    password: ENV["SENDGRID_PASSWORD"]
   }
+
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
 
